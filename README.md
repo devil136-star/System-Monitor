@@ -1,119 +1,196 @@
-# GitHub Repository Description
+# 🔍 Real-Time System Monitor
 
-## Short Description (for GitHub repo description field - ~160 chars)
-```
-🔍 Real-time system monitor with beautiful TUI - CPU, memory, disk, process & network monitoring. Built with Python, Rich & psutil.
-```
+A powerful, high-performance command-line tool for real-time system analysis, process monitoring, and network traffic inspection. Built with Python and featuring a beautiful terminal UI using the Rich library.
 
-## Medium Description (for GitHub repo About section)
-```
-A powerful, high-performance command-line tool for real-time system analysis, process monitoring, and network traffic inspection. Features a beautiful terminal UI with color-coded metrics, real-time updates, and comprehensive system insights. Built with Python, Rich library, and psutil for cross-platform compatibility.
-```
-
-## Full Project Description (for README or detailed description)
-
-### 🔍 Real-Time System Monitor
-
-A professional-grade command-line tool for comprehensive system monitoring with a beautiful, modern terminal user interface. Monitor your system's CPU, memory, disk usage, running processes, and network traffic in real-time with color-coded metrics and intuitive visualizations.
-
-### ✨ Key Features
+## ✨ Features
 
 - **Real-Time System Analysis**
-  - CPU usage monitoring (overall and per-core)
-  - Memory and swap usage with visual progress bars
-  - Disk usage for all mounted partitions
+  - CPU usage (overall and per-core)
+  - Memory and swap usage
+  - Disk usage for all partitions
   - System load averages
 
-- **Advanced Process Monitoring**
+- **Process Monitoring**
   - Top processes sorted by CPU or memory usage
-  - Process filtering by name
-  - Detailed process information (PID, threads, status)
-  - Color-coded performance indicators
+  - Process details: PID, name, CPU%, memory%, threads, status
+  - Real-time updates with color-coded indicators
+  - Customizable number of processes displayed
 
 - **Network Traffic Inspection**
-  - Real-time network I/O statistics
-  - Send/receive speed calculations
-  - Active network connections monitoring
-  - Packet and error statistics
+  - Network I/O statistics (bytes sent/received, packets)
+  - Active network connections
+  - Connection details: local/remote addresses, status, type
+  - Error and drop statistics
 
 - **Beautiful Terminal UI**
-  - Modern, colorful interface powered by Rich library
+  - Modern, colorful interface with Rich library
   - Real-time updates with smooth refresh
   - Color-coded metrics (green/yellow/red thresholds)
-  - Organized multi-panel layout
+  - Organized layout with panels and tables
 
 - **High Performance**
-  - Efficient data collection with minimal overhead
-  - Configurable refresh rates
-  - Optimized for speed and responsiveness
-  - Cross-platform support (Windows, Linux, macOS)
+  - Efficient data collection using psutil
+  - Optimized refresh rates
+  - Minimal resource overhead
+  - Fast and responsive
 
-### 🚀 Quick Start
+## 🚀 Installation
 
+1. **Clone or download this repository**
+
+2. **Install Python dependencies:**
+   
+   **Windows:**
+   ```bash
+   setup.bat
+   ```
+   
+   **Linux/macOS:**
+   ```bash
+   chmod +x setup.sh
+   ./setup.sh
+   ```
+   
+   **Or manually:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+   
+   Or install packages individually:
+   ```bash
+   pip install rich psutil click
+   ```
+
+## 📖 Usage
+
+### Basic Usage
+
+Run the monitor with default settings:
 ```bash
-# Install dependencies
-pip install -r requirements.txt
-
-# Run the monitor
 python system_monitor.py
-
-# Advanced usage
-python system_monitor.py --refresh 0.5 --sort memory --processes 20
 ```
 
-### 🛠️ Tech Stack
+### Command-Line Options
 
-- **Python 3.7+** - Core language
-- **Rich** - Beautiful terminal UI and formatting
-- **psutil** - Cross-platform system and process utilities
-- **Click** - Command-line interface framework
+```bash
+python system_monitor.py [OPTIONS]
+```
 
-### 📊 What You'll See
+**Options:**
+- `-r, --refresh FLOAT` - Refresh rate in seconds (default: 1.0)
+- `-s, --sort [cpu|memory]` - Sort processes by CPU or memory (default: cpu)
+- `-p, --processes INTEGER` - Number of top processes to display (default: 10)
+- `-c, --connections INTEGER` - Number of network connections to display (default: 10)
+- `-f, --filter TEXT` - Filter processes by name (case-insensitive)
 
-- **System Overview Panel**: CPU, memory, and swap usage with visual indicators
-- **Top Processes Table**: Real-time process monitoring with detailed metrics
-- **Network Statistics**: Network I/O, speeds, and connection information
-- **Disk Usage Table**: All partitions with usage percentages
-- **Author Footer**: Developer information and social links
+### Examples
 
-### 🎯 Use Cases
+**Monitor with 0.5 second refresh rate:**
+```bash
+python system_monitor.py --refresh 0.5
+```
 
-- System administrators monitoring server performance
-- Developers tracking resource usage during development
-- Performance analysis and optimization
-- Network traffic monitoring
-- Process debugging and analysis
-- Educational purposes for learning system internals
+**Sort processes by memory usage:**
+```bash
+python system_monitor.py --sort memory
+```
 
-### 📝 Requirements
+**Display top 20 processes:**
+```bash
+python system_monitor.py --processes 20
+```
 
-- Python 3.7 or higher
-- Administrator/root privileges (recommended for full access)
+**Show 30 network connections:**
+```bash
+python system_monitor.py --connections 30
+```
+
+**Filter processes by name:**
+```bash
+python system_monitor.py --filter chrome
+```
+
+**Combined options:**
+```bash
+python system_monitor.py --refresh 0.5 --sort memory --processes 15 --connections 20 --filter python
+```
+
+## 🎨 UI Overview
+
+The interface is divided into several sections:
+
+1. **System Overview Panel** (Top Right)
+   - CPU usage with visual bar
+   - Memory usage with visual bar
+   - Swap usage
+   - System information
+
+2. **Top Processes Table** (Top Left)
+   - Real-time process monitoring
+   - Color-coded CPU and memory usage
+   - Process details and status
+
+3. **Network Statistics** (Bottom Left)
+   - Network I/O metrics
+   - Real-time send/receive speeds
+   - Packet statistics
+   - Error counts
+
+4. **Disk Usage Table** (Bottom Right)
+   - All mounted partitions
+   - Usage percentages with color coding
+   - Read/write statistics
+
+5. **Active Network Connections** (Optional)
+   - Current network connections
+   - Local and remote addresses
+   - Connection status
+
+## 🎯 Color Coding
+
+- **Green**: Normal/low usage (< 50% for CPU/memory, < 60% for disk)
+- **Yellow**: Moderate usage (50-80% for CPU/memory, 60-80% for disk)
+- **Red**: High usage (> 80% for CPU/memory, > 80% for disk)
+
+## ⚙️ Requirements
+
+- Python 3.7+
 - Windows, Linux, or macOS
+- Administrator/root privileges (recommended for full process and network access)
 
-### 🤝 Contributing
+## 🔧 Technical Details
 
-Contributions are welcome! Feel free to submit issues, fork the repository, and create pull requests for any improvements.
+- **Libraries Used:**
+  - `rich`: Beautiful terminal UI and formatting (v13.7.0+)
+  - `psutil`: Cross-platform system and process utilities (v5.9.8+)
+  - `click`: Command-line interface creation (v8.1.7+)
 
-### 📄 License
+- **Performance:**
+  - Efficient data collection with minimal overhead
+  - Optimized refresh rates
+  - Fast process enumeration
+  - Low memory footprint
 
-Open source - feel free to use for personal and commercial projects.
+## 🛑 Exiting
+
+Press `Ctrl+C` to stop the monitor and exit gracefully.
+
+## 📝 Notes
+
+- Some system information may require administrator/root privileges
+- Network connection details may be limited on some systems
+- Disk I/O statistics depend on system capabilities
+- Process information may be restricted for system processes
+
+## 🤝 Contributing
+
+Feel free to submit issues, fork the repository, and create pull requests for any improvements.
+
+## 📄 License
+
+This project is open source and available for personal and commercial use.
 
 ---
 
-**Built with ❤️ by Himanshu Kumar**
-
-🔗 [LinkedIn](https://www.linkedin.com/in/himanshu-kumar-777a50292) | 🐙 [GitHub](https://github.com/devil136-star)
-
-
-
-
-
-
-
-
-
-
-<img width="1920" height="1080" alt="Screenshot 2025-11-08 220757" src="https://github.com/user-attachments/assets/936c3d7b-3a26-49e6-9fb0-19621bb74ada" />
-
+**Enjoy monitoring your system in real-time!** 🚀
 
